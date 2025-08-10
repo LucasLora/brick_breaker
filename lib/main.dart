@@ -1,3 +1,5 @@
+import 'package:brick_breaker/ui/screens/members/members_screen.dart';
+import 'package:brick_breaker/ui/screens/members/members_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,7 +37,10 @@ class BrickBreakerApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (_) => const HomeScreen(),
-          //Todo: '/members': (_) => const MembersScreen(),
+          '/members': (_) => ChangeNotifierProvider(
+            create: (_) => MembersViewModel(),
+            child: const MembersScreen(),
+          ),
           //Todo: '/game': (_) => const GameScreen(),
         },
       ),
