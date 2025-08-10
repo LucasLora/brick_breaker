@@ -65,8 +65,7 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 AppButton(
                   label: 'Integrantes',
-                  onPressed: () =>
-                      {}, //Todo: Navigator.pushNamed(context, '/members'),
+                  onPressed: () => Navigator.pushNamed(context, '/members'),
                 ),
                 const SizedBox(height: 48),
                 Row(
