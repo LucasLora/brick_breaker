@@ -1,16 +1,21 @@
-# brick_breaker
+# Brick Breaker — Projeto Integrador VI-A
 
-A new Flutter project.
+## 📌 Resumo rápido
+Aplicativo móvel (Android) que implementa o clássico **Brick Breaker (Breakout)** como trabalho do Projeto Integrador VI-A.  
+**Objetivo:** projetar, prototipar e implementar o jogo com:
+- **Mínimo de 3 fases**
+- **Tela de integrantes**
+- **Vibração ao iniciar**
+- **Som ao concluir fase**
+- **Mobile / Android**
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠 Tecnologias
+- **Flutter & Dart** — framework principal (UI e lógica do app)
+- **Provider** — gerenciamento de estado / ViewModels
+- **Google Fonts** — tipografia global
+- **Flame** — motor de jogo 2D (renderização e loop) — usado para o `GameScreen`
+- **flame_audio** — efeitos sonoros
+- **vibration** — vibração do dispositivo
+- **Git** — versionamento (branch por feature)
