@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  bool soundOn = true;
-  int selectedLevel = 1;
+  bool _soundOn = true;
+
+  bool get soundOn => _soundOn;
 
   void toggleSound() {
-    soundOn = !soundOn;
-    notifyListeners();
-  }
-
-  void setLevel(int level) {
-    selectedLevel = level;
+    _soundOn = !_soundOn;
     notifyListeners();
   }
 }

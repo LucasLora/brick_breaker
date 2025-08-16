@@ -1,3 +1,5 @@
+import 'package:brick_breaker/ui/screens/members/members_screen.dart';
+import 'package:brick_breaker/ui/screens/members/members_viewmodel.dart';
 import 'package:brick_breaker/ui/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,11 +15,8 @@ class HomeScreen extends StatelessWidget {
     final tt = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: cs.surface,
       appBar: AppBar(
-        backgroundColor: cs.surface,
         elevation: 0,
-        iconTheme: IconThemeData(color: cs.onSurface),
         title: Text(
           'Brick Breaker',
           style: tt.titleLarge?.copyWith(
@@ -27,12 +26,24 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
+            icon: Icon(vm.soundOn ? Icons.volume_up : Icons.volume_off),
             tooltip: vm.soundOn ? 'Som: ligado' : 'Som: desligado',
             onPressed: vm.toggleSound,
-            icon: Icon(
-              vm.soundOn ? Icons.volume_up : Icons.volume_off,
-              color: cs.onSurface,
-            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.people_alt_rounded),
+            tooltip: 'Integrantes',
+            onPressed: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ChangeNotifierProvider(
+                    create: (_) => MembersViewModel(),
+                    child: const MembersScreen(),
+                  ),
+                ),
+              ),
+            },
           ),
         ],
       ),
@@ -58,38 +69,48 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 48),
                 AppButton(
-                  label: 'Iniciar Jogo',
-                  onPressed: () =>
-                      {}, //Todo: Navigator.pushNamed(context, '/game'),
+                  label: 'Nível 1: Padrão',
+                  onPressed: () => {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) => ChangeNotifierProvider(
+                    //       create: (_) => GameViewModel(),
+                    //       child: const GameScreen(level: 1),
+                    //     ),
+                    //   ),
+                    // ),
+                  },
                 ),
                 const SizedBox(height: 12),
                 AppButton(
-                  label: 'Integrantes',
-                  onPressed: () => Navigator.pushNamed(context, '/members'),
+                  label: 'Nível 2: Semi aleatório',
+                  onPressed: () => {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) => ChangeNotifierProvider(
+                    //       create: (_) => GameViewModel(),
+                    //       child: const GameScreen(level: 2),
+                    //     ),
+                    //   ),
+                    // ),
+                  },
                 ),
-                const SizedBox(height: 48),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Nível: ',
-                      style: tt.bodyLarge?.copyWith(color: cs.onSurface),
-                    ),
-                    const SizedBox(width: 8),
-                    DropdownButton<int>(
-                      dropdownColor: Theme.of(context).colorScheme.surface,
-                      value: vm.selectedLevel,
-                      style: tt.bodyLarge?.copyWith(color: cs.onSurface),
-                      items: const [
-                        DropdownMenuItem(value: 1, child: Text('1')),
-                        DropdownMenuItem(value: 2, child: Text('2')),
-                        DropdownMenuItem(value: 3, child: Text('3')),
-                      ],
-                      onChanged: (v) {
-                        if (v != null) vm.setLevel(v);
-                      },
-                    ),
-                  ],
+                const SizedBox(height: 12),
+                AppButton(
+                  label: 'Nível 3: Aleatório',
+                  onPressed: () => {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) => ChangeNotifierProvider(
+                    //       create: (_) => GameViewModel(),
+                    //       child: const GameScreen(level: 3),
+                    //     ),
+                    //   ),
+                    // ),
+                  },
                 ),
               ],
             ),
