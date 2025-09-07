@@ -1,3 +1,5 @@
+import 'package:brick_breaker/ui/screens/about/about_screen.dart';
+import 'package:brick_breaker/ui/screens/about/about_viewmodel.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_screen.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:brick_breaker/ui/widgets/app_button.dart';
@@ -59,7 +61,27 @@ class HomeScreen extends StatelessWidget {
                 AppButton(
                   label: 'Sobre',
                   icon: Icons.info_outline_rounded,
-                  onPressed: () => {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ChangeNotifierProvider(
+                          create: (_) => AboutViewModel(),
+                          child: const AboutScreen(),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 36),
+                Center(
+                  child: Text(
+                    "Versão 1.0.0 - 2025",
+                    textAlign: TextAlign.center,
+                    style: tt.bodySmall?.copyWith(
+                      color: cs.onSurface.withAlpha(180),
+                    ),
+                  ),
                 ),
               ],
             ),
