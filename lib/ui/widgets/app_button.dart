@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   final String label;
+  final IconData icon;
   final VoidCallback onPressed;
 
-  const AppButton({super.key, required this.label, required this.onPressed});
+  const AppButton({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,14 @@ class AppButton extends StatelessWidget {
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        child: Text(label),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: cs.onSurface),
+            const SizedBox(width: 8),
+            Text(label),
+          ],
+        ),
       ),
     );
   }
