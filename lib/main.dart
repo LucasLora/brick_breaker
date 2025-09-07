@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'ui/screens/home/home_screen.dart';
-import 'ui/screens/home/home_viewmodel.dart';
+import 'ui/screens/settings/settings_viewmodel.dart';
 
 void main() {
   runApp(const BrickBreakerApp());
@@ -15,7 +15,7 @@ class BrickBreakerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HomeViewModel())],
+      providers: [ChangeNotifierProvider(create: (_) => SettingsViewModel())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Brick Breaker',
