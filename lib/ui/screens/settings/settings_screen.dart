@@ -12,6 +12,7 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButton(),
         title: Text(
           "Voltar",
           style: tt.bodyMedium?.copyWith(color: cs.onSurface),
@@ -27,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.settings_outlined,
-                      size: 40,
+                      size: 36,
                       color: cs.onSurface,
                     ),
                     const SizedBox(height: 8),
@@ -158,6 +159,16 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 24),
+              Center(
+                child: Text(
+                  "As configurações são salvas automaticamente",
+                  textAlign: TextAlign.center,
+                  style: tt.bodySmall?.copyWith(
+                    color: cs.onSurface.withAlpha(180),
+                  ),
+                ),
               ),
             ],
           );
