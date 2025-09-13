@@ -1,3 +1,5 @@
+import 'package:brick_breaker/ui/widgets/app_card.dart';
+import 'package:brick_breaker/ui/widgets/app_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'about_viewmodel.dart';
@@ -10,107 +12,58 @@ class AboutScreen extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(),
-        title: Text(
-          "Voltar",
-          style: tt.titleMedium?.copyWith(color: cs.onSurface),
+    return AppScreen(
+      headerIcon: Icons.info_outline_rounded,
+      headerTitle: "SOBRE O JOGO",
+      headerSubtitle: "Equipe de Desenvolvimento",
+      footerText:
+          "Inspirado no clássico Brick Breaker da Atari\n© 2025 - Todos os direitos reservados",
+      body: [
+        AppCard(
+          title: "Brick Breaker - Edição Clássica",
+          subtitle:
+              "Uma recriação moderna do clássico jogo Brick Breaker da Atari (1976).",
         ),
-      ),
-      body: Consumer<AboutViewModel>(
-        builder: (context, vm, _) {
-          return ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.info_outline_rounded,
-                      size: 36,
-                      color: cs.onSurface,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "SOBRE O JOGO",
-                      style: tt.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: cs.onSurface,
+
+        const SizedBox(height: 12),
+
+        Consumer<AboutViewModel>(
+          builder: (context, vm, _) {
+            return Column(
+              children: vm.members.map((member) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: AppCard(
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        member.imagePath,
+                        width: 56,
+                        height: 56,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) {
+                          return CircleAvatar(
+                            radius: 28,
+                            backgroundColor: cs.primary,
+                            child: Text(
+                              member.name.isNotEmpty ? member.name[0] : '?',
+                              style: tt.titleMedium?.copyWith(
+                                color: cs.onPrimary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "Equipe de Desenvolvimento",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyLarge?.copyWith(color: cs.onSurface),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 24),
-              Card(
-                color: cs.surface.withAlpha(120),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: ListTile(
-                    title: Text(
-                      "Brick Breaker - Ediçao Clássica",
-                      style: tt.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: cs.onSurface,
-                      ),
-                    ),
-                    subtitle: Text(
-                      "Uma recriação moderna do clássico jogo Brick Breaker da Atari (1976).",
-                      style: tt.bodyMedium?.copyWith(color: cs.onSurface),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              ...vm.members.map((member) {
-                return Card(
-                  color: cs.surface.withAlpha(120),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(member.imagePath),
-                      ),
-                      title: Text(
-                        member.name,
-                        style: tt.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: cs.onSurface,
-                        ),
-                      ),
-                    ),
+                    title: member.name,
                   ),
                 );
-              }),
-              const SizedBox(height: 24),
-              Center(
-                child: Text(
-                  "Inspirado no clássico Brick Breaker da Atari\n© 2025 - Todos os direitos reservados",
-                  textAlign: TextAlign.center,
-                  style: tt.bodySmall?.copyWith(
-                    color: cs.onSurface.withAlpha(180),
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+              }).toList(),
+            );
+          },
+        ),
+      ],
     );
   }
 }
