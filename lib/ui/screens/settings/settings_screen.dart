@@ -23,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
             return Column(
               children: [
                 AppCard(
-                  leading: Icon(Icons.volume_up),
+                  leading: const Icon(Icons.volume_up),
                   title: "ÁUDIO",
                   children: [
                     SwitchListTile(
@@ -49,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(height: 8),
 
                 AppCard(
-                  leading: Icon(Icons.vibration),
+                  leading: const Icon(Icons.vibration),
                   title: "VIBRAÇÃO",
                   children: [
                     SwitchListTile(
@@ -75,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(height: 8),
 
                 AppCard(
-                  leading: Icon(Icons.sports_esports),
+                  leading: const Icon(Icons.sports_esports),
                   title: "JOGABILIDADE",
                   children: [
                     ListTile(

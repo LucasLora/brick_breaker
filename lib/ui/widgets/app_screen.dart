@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 class AppScreen extends StatelessWidget {
   static const String appBarText = "Voltar";
 
-  // Header
   final IconData? headerIcon;
   final String? headerTitle;
   final String? headerSubtitle;
 
-  // Body
   final List<Widget>? body;
 
-  // Footer
   final String? footerText;
 
   const AppScreen({

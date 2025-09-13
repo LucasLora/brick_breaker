@@ -19,7 +19,7 @@ class AboutScreen extends StatelessWidget {
       footerText:
           "Inspirado no clássico Brick Breaker da Atari\n© 2025 - Todos os direitos reservados",
       body: [
-        AppCard(
+        const AppCard(
           title: "Brick Breaker - Edição Clássica",
           subtitle:
               "Uma recriação moderna do clássico jogo Brick Breaker da Atari (1976).",
