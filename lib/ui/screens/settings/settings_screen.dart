@@ -1,3 +1,5 @@
+import 'package:brick_breaker/ui/widgets/app_card.dart';
+import 'package:brick_breaker/ui/widgets/app_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'settings_viewmodel.dart';
@@ -10,208 +12,129 @@ class SettingsScreen extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(),
-        title: Text(
-          "Voltar",
-          style: tt.bodyMedium?.copyWith(color: cs.onSurface),
-        ),
-      ),
-      body: Consumer<SettingsViewModel>(
-        builder: (context, vm, _) {
-          return ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              Center(
-                child: Column(
+    return AppScreen(
+      headerIcon: Icons.settings_outlined,
+      headerTitle: "CONFIGURAÇÕES",
+      headerSubtitle: "Personalize sua experiência",
+      footerText: "As configurações são salvas automaticamente",
+      body: [
+        Consumer<SettingsViewModel>(
+          builder: (context, vm, _) {
+            return Column(
+              children: [
+                AppCard(
+                  leading: Icon(Icons.volume_up),
+                  title: "ÁUDIO",
                   children: [
-                    Icon(
-                      Icons.settings_outlined,
-                      size: 36,
-                      color: cs.onSurface,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "CONFIGURAÇÕES",
-                      style: tt.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: cs.onSurface,
+                    SwitchListTile(
+                      title: Text(
+                        "Efeitos Sonoros",
+                        style: tt.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: cs.onPrimary,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      "Personalize sua experiência",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyLarge?.copyWith(color: cs.onSurface),
+                      subtitle: Text(
+                        "Ativar sons do jogo",
+                        style: tt.bodySmall?.copyWith(
+                          color: cs.onPrimary.withAlpha(200),
+                        ),
+                      ),
+                      value: vm.soundOn,
+                      onChanged: (_) => vm.toggleSound(),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 24),
-              _buildSectionCard(
-                context,
-                title: "ÁUDIO",
-                icon: Icons.volume_up,
-                children: [
-                  SwitchListTile(
-                    title: Text(
-                      "Efeitos Sonoros",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: cs.onSurface,
-                      ),
-                    ),
-                    subtitle: Text(
-                      "Ativar sons do jogo",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(color: cs.onSurface),
-                    ),
-                    value: vm.soundOn,
-                    onChanged: (_) => vm.toggleSound(),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              _buildSectionCard(
-                context,
-                title: "VIBRAÇÃO",
-                icon: Icons.vibration,
-                children: [
-                  SwitchListTile(
-                    title: Text(
-                      "Feedback Tátil",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: cs.onSurface,
-                      ),
-                    ),
-                    subtitle: Text(
-                      "Vibração em ações do jogo",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(color: cs.onSurface),
-                    ),
-                    value: vm.vibrationOn,
-                    onChanged: (_) => vm.toggleVibration(),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              _buildSectionCard(
-                context,
-                title: "JOGABILIDADE",
-                icon: Icons.sports_esports,
-                children: [
-                  ListTile(
-                    title: Text(
-                      "Dificuldade Padrão",
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: cs.onSurface,
-                      ),
-                    ),
-                    subtitle: Text(
-                      "Selecione a velocidade da bola",
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodySmall?.copyWith(color: cs.onSurface),
-                    ),
-                    trailing: DropdownButton<String>(
-                      value: vm.difficulty,
-                      items: [
-                        DropdownMenuItem(
-                          value: "Easy",
-                          child: Text(
-                            "Fácil",
-                            style: tt.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: cs.onSurface,
-                            ),
-                          ),
+
+                const SizedBox(height: 8),
+
+                AppCard(
+                  leading: Icon(Icons.vibration),
+                  title: "VIBRAÇÃO",
+                  children: [
+                    SwitchListTile(
+                      title: Text(
+                        "Feedback Tátil",
+                        style: tt.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: cs.onPrimary,
                         ),
-                        DropdownMenuItem(
-                          value: "Medium",
-                          child: Text(
-                            "Médio",
-                            style: tt.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: cs.onSurface,
-                            ),
-                          ),
+                      ),
+                      subtitle: Text(
+                        "Vibração em ações do jogo",
+                        style: tt.bodySmall?.copyWith(
+                          color: cs.onPrimary.withAlpha(200),
                         ),
-                        DropdownMenuItem(
-                          value: "Hard",
-                          child: Text(
-                            "Difícil",
-                            style: tt.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: cs.onSurface,
-                            ),
-                          ),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) vm.setDifficulty(value);
-                      },
+                      ),
+                      value: vm.vibrationOn,
+                      onChanged: (_) => vm.toggleVibration(),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Center(
-                child: Text(
-                  "As configurações são salvas automaticamente",
-                  textAlign: TextAlign.center,
-                  style: tt.bodySmall?.copyWith(
-                    color: cs.onSurface.withAlpha(180),
-                  ),
+                  ],
                 ),
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
 
-  Widget _buildSectionCard(
-    BuildContext context, {
-    required String title,
-    required IconData icon,
-    required List<Widget> children,
-  }) {
-    final cs = Theme.of(context).colorScheme;
-    final tt = Theme.of(context).textTheme;
+                const SizedBox(height: 8),
 
-    return Card(
-      color: cs.surface.withAlpha(120),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(icon, color: cs.onSurface),
-                const SizedBox(width: 8),
-                Text(
-                  title,
-                  style: tt.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: cs.onSurface,
-                  ),
+                AppCard(
+                  leading: Icon(Icons.sports_esports),
+                  title: "JOGABILIDADE",
+                  children: [
+                    ListTile(
+                      title: Text(
+                        "Dificuldade Padrão",
+                        style: tt.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: cs.onPrimary,
+                        ),
+                      ),
+                      subtitle: Text(
+                        "Selecione a velocidade da bola",
+                        style: tt.bodySmall?.copyWith(
+                          color: cs.onPrimary.withAlpha(200),
+                        ),
+                      ),
+                      trailing: DropdownButton<String>(
+                        value: vm.difficulty,
+                        items: [
+                          DropdownMenuItem(
+                            value: "Easy",
+                            child: Text(
+                              "Fácil",
+                              style: tt.bodySmall?.copyWith(
+                                color: cs.onPrimary.withAlpha(200),
+                              ),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            value: "Medium",
+                            child: Text(
+                              "Médio",
+                              style: tt.bodySmall?.copyWith(
+                                color: cs.onPrimary.withAlpha(200),
+                              ),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            value: "Hard",
+                            child: Text(
+                              "Difícil",
+                              style: tt.bodySmall?.copyWith(
+                                color: cs.onPrimary.withAlpha(200),
+                              ),
+                            ),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          if (value != null) vm.setDifficulty(value);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ),
-            const SizedBox(height: 8),
-            ...children,
-          ],
+            );
+          },
         ),
-      ),
+      ],
     );
   }
 }
