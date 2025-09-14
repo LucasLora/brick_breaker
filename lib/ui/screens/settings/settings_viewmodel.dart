@@ -1,3 +1,4 @@
+import 'package:brick_breaker/models/enums/difficulty.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,11 +9,11 @@ class SettingsViewModel extends ChangeNotifier {
 
   bool _soundOn = true;
   bool _vibrationOn = true;
-  String _difficulty = "Medium";
+  Difficulty _difficulty = Difficulty.medium;
 
   bool get soundOn => _soundOn;
   bool get vibrationOn => _vibrationOn;
-  String get difficulty => _difficulty;
+  Difficulty get difficulty => _difficulty;
 
   SettingsViewModel() {
     _loadSettings();
@@ -22,7 +23,11 @@ class SettingsViewModel extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     _soundOn = prefs.getBool(_keySound) ?? true;
     _vibrationOn = prefs.getBool(_keyVibration) ?? true;
-    _difficulty = prefs.getString(_keyDifficulty) ?? "Medium";
+    final difficultyIndex = prefs.getInt(_keyDifficulty) ?? 1;
+    _difficulty = Difficulty.values.firstWhere(
+      (x) => x.index == difficultyIndex,
+      orElse: () => Difficulty.medium,
+    );
     notifyListeners();
   }
 
@@ -40,10 +45,10 @@ class SettingsViewModel extends ChangeNotifier {
     await prefs.setBool(_keyVibration, _vibrationOn);
   }
 
-  Future<void> setDifficulty(String value) async {
+  Future<void> setDifficulty(Difficulty value) async {
     _difficulty = value;
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_keyDifficulty, value);
+    await prefs.setInt(_keyDifficulty, value.index);
   }
 }

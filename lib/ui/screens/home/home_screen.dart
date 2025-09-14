@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 8),
 
                       Text(
-                        'Clássico Retrô',
+                        'Edição Clássica',
                         textAlign: TextAlign.center,
                         style: tt.headlineSmall?.copyWith(
                           color: cs.onPrimary.withAlpha(102),

@@ -1,3 +1,4 @@
+import 'package:brick_breaker/models/enums/difficulty.dart';
 import 'package:brick_breaker/ui/widgets/app_card.dart';
 import 'package:brick_breaker/ui/widgets/app_screen.dart';
 import 'package:flutter/material.dart';
@@ -92,36 +93,19 @@ class SettingsScreen extends StatelessWidget {
                           color: cs.onPrimary.withAlpha(200),
                         ),
                       ),
-                      trailing: DropdownButton<String>(
+                      trailing: DropdownButton<Difficulty>(
                         value: vm.difficulty,
                         items: [
-                          DropdownMenuItem(
-                            value: "Easy",
-                            child: Text(
-                              "Fácil",
-                              style: tt.bodySmall?.copyWith(
-                                color: cs.onPrimary.withAlpha(200),
+                          for (var diff in Difficulty.values)
+                            DropdownMenuItem<Difficulty>(
+                              value: diff,
+                              child: Text(
+                                diff.name,
+                                style: tt.bodySmall?.copyWith(
+                                  color: cs.onPrimary.withAlpha(200),
+                                ),
                               ),
                             ),
-                          ),
-                          DropdownMenuItem(
-                            value: "Medium",
-                            child: Text(
-                              "Médio",
-                              style: tt.bodySmall?.copyWith(
-                                color: cs.onPrimary.withAlpha(200),
-                              ),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: "Hard",
-                            child: Text(
-                              "Difícil",
-                              style: tt.bodySmall?.copyWith(
-                                color: cs.onPrimary.withAlpha(200),
-                              ),
-                            ),
-                          ),
                         ],
                         onChanged: (value) {
                           if (value != null) vm.setDifficulty(value);
