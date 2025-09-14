@@ -1,5 +1,7 @@
+import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'ui/screens/home/home_screen.dart';
 
@@ -12,19 +14,22 @@ class BrickBreakerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Brick Breaker',
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        textTheme: GoogleFonts.poppinsTextTheme(),
-        colorScheme: ColorScheme.dark(
-          primary: Colors.grey.shade800,
-          onPrimary: Colors.white,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => SettingsViewModel())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Brick Breaker',
+        theme: ThemeData(
+          useMaterial3: true,
+          brightness: Brightness.dark,
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          colorScheme: ColorScheme.dark(
+            primary: Colors.grey.shade800,
+            onPrimary: Colors.white,
+          ),
         ),
+        home: const HomeScreen(),
       ),
-      home: const HomeScreen(),
     );
   }
 }
