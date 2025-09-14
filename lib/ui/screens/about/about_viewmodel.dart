@@ -29,5 +29,5 @@ class AboutViewModel extends ChangeNotifier {
     ),
   ];
 
-  List<GroupMember> get members => _members;
+  List<GroupMember> get members => List.unmodifiable(_members);
 }

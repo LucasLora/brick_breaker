@@ -1,47 +1,40 @@
 import 'package:brick_breaker/models/enums/generation_type.dart';
 import 'package:brick_breaker/models/level.dart';
+import 'package:brick_breaker/ui/screens/levels/levels_viewmodel.dart';
 import 'package:brick_breaker/ui/widgets/app_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LevelsScreen extends StatelessWidget {
   const LevelsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final levels = List.generate(20, (i) {
-      final number = i + 1;
-      return Level(
-        number: number,
-        unlocked: number <= 5,
-        generationType: number < 3
-            ? GenerationType.manual
-            : number < 5
-            ? GenerationType.semiRandom
-            : GenerationType.random,
-      );
-    });
-
     return AppScreen(
       headerIcon: Icons.emoji_events_outlined,
       headerTitle: "SELECIONAR NÍVEL",
       headerSubtitle: "Escolha o seu desafio",
       body: [
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 1,
-          ),
-          itemCount: levels.length,
-          itemBuilder: (context, index) {
-            final level = levels[index];
-            if (!level.unlocked) {
-              return _LockedLevelCard(number: level.number);
-            }
-            return _UnlockedLevelCard(level: level);
+        Consumer<LevelsViewModel>(
+          builder: (context, vm, _) {
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 1,
+              ),
+              itemCount: vm.levels.length,
+              itemBuilder: (context, index) {
+                final level = vm.levels[index];
+                if (level.unlocked) {
+                  return _UnlockedLevelCard(level: level);
+                }
+                return _LockedLevelCard(number: level.number);
+              },
+            );
           },
         ),
       ],
@@ -64,7 +57,12 @@ class _UnlockedLevelCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: () {
-          // TODO: abrir o jogo no nível
+          //Navigator.push(
+          //  context,
+          //  MaterialPageRoute(
+          //    builder: (_) => const GameScreen(level: level),
+          //  ),
+          //);
         },
         child: Padding(
           padding: const EdgeInsets.all(8),
