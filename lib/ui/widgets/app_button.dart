@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  final String label;
+  final IconData icon;
+  final String text;
   final VoidCallback onPressed;
 
-  const AppButton({super.key, required this.label, required this.onPressed});
+  const AppButton({
+    super.key,
+    required this.icon,
+    required this.text,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +25,15 @@ class AppButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: cs.primary,
           foregroundColor: cs.onPrimary,
-          textStyle: tt.bodyLarge?.copyWith(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
+          textStyle: tt.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        child: Text(label),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Icon(icon), const SizedBox(width: 8), Text(text)],
+        ),
       ),
     );
   }
