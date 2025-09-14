@@ -1,3 +1,5 @@
+import 'package:brick_breaker/models/enums/game_state.dart';
+import 'package:brick_breaker/models/enums/generation_type.dart';
 import 'package:brick_breaker/models/level.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +9,17 @@ class GameViewModel extends ChangeNotifier {
   GameViewModel({required this.level});
 
   int get levelNumber => level.number;
+  GenerationType get generationType => level.generationType;
 
-  int _lives = 3;
-  int get lives => _lives;
+  // Todo: lives management
+  //int _lives = 3;
+  //int get lives => _lives;
 
-  void loseLife() {
-    if (_lives > 0) {
-      _lives--;
-      notifyListeners();
-    }
+  GameState _state = GameState.idle;
+  GameState get state => _state;
+
+  void gameOver() {
+    _state = GameState.gameOver;
+    notifyListeners();
   }
 }
