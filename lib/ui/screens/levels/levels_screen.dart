@@ -1,5 +1,7 @@
 import 'package:brick_breaker/models/enums/generation_type.dart';
 import 'package:brick_breaker/models/level.dart';
+import 'package:brick_breaker/ui/screens/game/game_screen.dart';
+import 'package:brick_breaker/ui/screens/game/game_viewmodel.dart';
 import 'package:brick_breaker/ui/screens/levels/levels_viewmodel.dart';
 import 'package:brick_breaker/ui/widgets/app_screen.dart';
 import 'package:flutter/material.dart';
@@ -57,12 +59,15 @@ class _UnlockedLevelCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: () {
-          //Navigator.push(
-          //  context,
-          //  MaterialPageRoute(
-          //    builder: (_) => const GameScreen(level: level),
-          //  ),
-          //);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ChangeNotifierProvider(
+                create: (_) => GameViewModel(level: level),
+                child: const GameScreen(),
+              ),
+            ),
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(8),
