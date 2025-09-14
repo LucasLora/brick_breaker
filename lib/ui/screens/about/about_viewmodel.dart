@@ -1,4 +1,4 @@
-import 'package:brick_breaker/models/member.dart';
+import 'package:brick_breaker/models/group_member.dart';
 import 'package:flutter/material.dart';
 
 class AboutViewModel extends ChangeNotifier {

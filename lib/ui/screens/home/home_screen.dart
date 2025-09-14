@@ -1,5 +1,6 @@
 import 'package:brick_breaker/ui/screens/about/about_screen.dart';
 import 'package:brick_breaker/ui/screens/about/about_viewmodel.dart';
+import 'package:brick_breaker/ui/screens/levels/levels_screen.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_screen.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:brick_breaker/ui/widgets/app_button.dart';
@@ -50,7 +51,12 @@ class HomeScreen extends StatelessWidget {
                         icon: Icons.emoji_events_outlined,
                         text: 'Níveis',
                         onPressed: () {
-                          // TODO: Navegar para seleção de níveis
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const LevelsScreen(),
+                            ),
+                          );
                         },
                       ),
 
