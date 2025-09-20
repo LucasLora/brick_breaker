@@ -1,5 +1,5 @@
-import 'package:brick_breaker/ui/game/brick_breaker_game.dart';
-import 'package:brick_breaker/ui/game/widgets/game_overlay.dart';
+import 'package:brick_breaker/game/brick_breaker_game.dart';
+import 'package:brick_breaker/game/widgets/game_overlay.dart';
 import 'package:flutter/material.dart';
 
 class TapToPlayOverlay extends StatelessWidget {

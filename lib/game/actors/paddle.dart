@@ -1,4 +1,4 @@
-import 'package:brick_breaker/ui/game/brick_breaker_game.dart';
+import 'package:brick_breaker/game/brick_breaker_game.dart';
 import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 

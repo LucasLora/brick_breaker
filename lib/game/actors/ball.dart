@@ -1,6 +1,6 @@
-import 'package:brick_breaker/ui/game/actors/brick.dart';
-import 'package:brick_breaker/ui/game/actors/walls.dart';
-import 'package:brick_breaker/ui/game/world.dart';
+import 'package:brick_breaker/game/actors/brick.dart';
+import 'package:brick_breaker/game/actors/walls.dart';
+import 'package:brick_breaker/game/world.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 

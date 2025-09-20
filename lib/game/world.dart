@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:brick_breaker/models/enums/difficulty.dart';
 import 'package:brick_breaker/services/helpers/feedback_helper.dart';
-import 'package:brick_breaker/ui/game/actors/ball.dart';
-import 'package:brick_breaker/ui/game/actors/brick_zone.dart';
-import 'package:brick_breaker/ui/game/actors/paddle.dart';
-import 'package:brick_breaker/ui/game/actors/walls.dart';
-import 'package:brick_breaker/ui/game/brick_breaker_game.dart';
+import 'package:brick_breaker/game/actors/ball.dart';
+import 'package:brick_breaker/game/actors/brick_zone.dart';
+import 'package:brick_breaker/game/actors/paddle.dart';
+import 'package:brick_breaker/game/actors/walls.dart';
+import 'package:brick_breaker/game/brick_breaker_game.dart';
 import 'package:brick_breaker/ui/screens/game/game_viewmodel.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:flame/components.dart';

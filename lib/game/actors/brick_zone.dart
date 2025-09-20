@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:brick_breaker/models/enums/generation_type.dart';
-import 'package:brick_breaker/ui/game/actors/brick.dart';
-import 'package:brick_breaker/ui/game/world.dart';
+import 'package:brick_breaker/game/actors/brick.dart';
+import 'package:brick_breaker/game/world.dart';
 import 'package:flame/components.dart';
 
 class BrickZone extends PositionComponent with ParentIsA<BrickBreakerWorld> {

@@ -1,4 +1,4 @@
-import 'package:brick_breaker/ui/game/world.dart';
+import 'package:brick_breaker/game/world.dart';
 import 'package:brick_breaker/ui/screens/game/game_viewmodel.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:flame/components.dart';

@@ -1,7 +1,7 @@
-import 'package:brick_breaker/ui/game/brick_breaker_game.dart';
-import 'package:brick_breaker/ui/game/overlays/game_over_overlay.dart';
-import 'package:brick_breaker/ui/game/overlays/level_beat_overlay.dart';
-import 'package:brick_breaker/ui/game/overlays/tap_to_play_overlay.dart';
+import 'package:brick_breaker/game/brick_breaker_game.dart';
+import 'package:brick_breaker/game/overlays/game_over_overlay.dart';
+import 'package:brick_breaker/game/overlays/level_beat_overlay.dart';
+import 'package:brick_breaker/game/overlays/tap_to_play_overlay.dart';
 import 'package:brick_breaker/ui/screens/game/game_viewmodel.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:flutter/material.dart';
