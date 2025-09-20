@@ -92,15 +92,19 @@ class BrickBreakerWorld extends Forge2DWorld
     gameViewModel.start();
   }
 
-  void onBrickDestroyed() {
+  void onBrickDestroyed() async {
     _remainingBricks--;
     if (_remainingBricks <= 0) {
+      await game.lifecycleEventsProcessed;
+      game.pauseEngine();
       game.overlays.add('LevelBeat');
       gameViewModel.levelBeat();
     }
   }
 
-  void onBallLost() {
+  void onBallLost() async {
+    await game.lifecycleEventsProcessed;
+    game.pauseEngine();
     game.overlays.add('GameOver');
     gameViewModel.gameOver();
   }

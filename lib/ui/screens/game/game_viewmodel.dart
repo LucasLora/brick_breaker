@@ -4,12 +4,13 @@ import 'package:brick_breaker/models/level.dart';
 import 'package:flutter/material.dart';
 
 class GameViewModel extends ChangeNotifier {
-  final Level level;
+  final Level _level;
 
-  GameViewModel({required this.level});
+  GameViewModel({required Level level}) : _level = level;
 
-  int get levelNumber => level.number;
-  GenerationType get generationType => level.generationType;
+  Level get level => _level;
+  int get levelNumber => _level.number;
+  GenerationType get generationType => _level.generationType;
 
   // Todo: lives management
   //int _lives = 3;
