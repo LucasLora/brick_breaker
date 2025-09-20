@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:brick_breaker/models/enums/difficulty.dart';
+import 'package:brick_breaker/services/helpers/feedback_helper.dart';
 import 'package:brick_breaker/ui/game/actors/ball.dart';
 import 'package:brick_breaker/ui/game/actors/brick_zone.dart';
 import 'package:brick_breaker/ui/game/actors/paddle.dart';
@@ -94,11 +95,15 @@ class BrickBreakerWorld extends Forge2DWorld
 
   void onBrickDestroyed() async {
     _remainingBricks--;
+    FeedbackHelper.playSound(settingsViewModel, 'brick.mp3');
+
     if (_remainingBricks <= 0) {
       await game.lifecycleEventsProcessed;
       game.pauseEngine();
       game.overlays.add('LevelBeat');
       gameViewModel.levelBeat();
+      FeedbackHelper.playSound(settingsViewModel, 'level_beat.mp3');
+      FeedbackHelper.vibrate(settingsViewModel);
     }
   }
 
@@ -107,5 +112,7 @@ class BrickBreakerWorld extends Forge2DWorld
     game.pauseEngine();
     game.overlays.add('GameOver');
     gameViewModel.gameOver();
+    FeedbackHelper.playSound(settingsViewModel, 'game_over.mp3');
+    FeedbackHelper.vibrate(settingsViewModel);
   }
 }
