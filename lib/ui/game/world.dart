@@ -13,6 +13,8 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 class BrickBreakerWorld extends Forge2DWorld
     with HasGameReference<BrickBreakerGame> {
+  int _remainingBricks = 0;
+
   final SettingsViewModel settingsViewModel;
   final GameViewModel gameViewModel;
 
@@ -22,11 +24,6 @@ class BrickBreakerWorld extends Forge2DWorld
   @override
   Future<void> onLoad() async {
     await _start();
-  }
-
-  void reset() {
-    removeAll(children);
-    Future.delayed(const Duration(seconds: 1), () => _start());
   }
 
   Future<void> _start() async {
@@ -82,5 +79,29 @@ class BrickBreakerWorld extends Forge2DWorld
       case Difficulty.hard:
         return 20.0;
     }
+  }
+
+  void registerBrick() {
+    _remainingBricks++;
+  }
+
+  void startGame() {
+    for (final ball in children.whereType<Ball>()) {
+      ball.launch();
+    }
+    gameViewModel.start();
+  }
+
+  void onBrickDestroyed() {
+    _remainingBricks--;
+    if (_remainingBricks <= 0) {
+      game.overlays.add('LevelBeat');
+      gameViewModel.levelBeat();
+    }
+  }
+
+  void onBallLost() {
+    game.overlays.add('GameOver');
+    gameViewModel.gameOver();
   }
 }

@@ -1,4 +1,7 @@
 import 'package:brick_breaker/ui/game/brick_breaker_game.dart';
+import 'package:brick_breaker/ui/game/overlays/game_over_overlay.dart';
+import 'package:brick_breaker/ui/game/overlays/level_beat_overlay.dart';
+import 'package:brick_breaker/ui/game/overlays/tap_to_play_overlay.dart';
 import 'package:brick_breaker/ui/screens/game/game_viewmodel.dart';
 import 'package:brick_breaker/ui/screens/settings/settings_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +45,7 @@ class GameScreen extends StatelessWidget {
                 // ),
               ],
             ),
-            // Todo: pause/continue and reset
+            // Todo: pause/resume and reset
             // actions: [
             //   IconButton(
             //     icon: vm.state == GameState.paused
@@ -70,6 +73,15 @@ class GameScreen extends StatelessWidget {
                 context.read<SettingsViewModel>(),
                 context.read<GameViewModel>(),
               ),
+              overlayBuilderMap: {
+                'TapToPlay': (_, BrickBreakerGame game) =>
+                    TapToPlayOverlay(game: game),
+                'GameOver': (_, BrickBreakerGame game) =>
+                    GameOverOverlay(game: game),
+                'LevelBeat': (_, BrickBreakerGame game) =>
+                    LevelBeatOverlay(game: game),
+              },
+              initialActiveOverlays: const <String>['TapToPlay'],
             ),
           ),
         );

@@ -18,8 +18,18 @@ class GameViewModel extends ChangeNotifier {
   GameState _state = GameState.idle;
   GameState get state => _state;
 
+  void start() {
+    _state = GameState.running;
+    notifyListeners();
+  }
+
   void gameOver() {
     _state = GameState.gameOver;
+    notifyListeners();
+  }
+
+  void levelBeat() {
+    _state = GameState.levelBeat;
     notifyListeners();
   }
 }

@@ -19,6 +19,10 @@ class BrickBreakerGame extends Forge2DGame<BrickBreakerWorld> {
 
   static const lengthFactor = 0.1;
 
+  void startGame() {
+    world.startGame();
+  }
+
   @override
   void onLoad() {
     camera.viewfinder.zoom = 1.0;

@@ -27,10 +27,9 @@ class Ball extends BodyComponent
     bodyDef?.userData = this;
   }
 
-  @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-    body.applyLinearImpulse(Vector2(0, 1));
+  void launch() {
+    final initial = Vector2(0, 1);
+    body.applyLinearImpulse(initial * speed * body.mass);
   }
 
   @override
@@ -46,9 +45,10 @@ class Ball extends BodyComponent
   void beginContact(Object other, Contact contact) {
     if (other is Brick) {
       other.removeFromParent();
+      parent.onBrickDestroyed();
     } else if (other is Walls &&
         (contact.fixtureA.isSensor || contact.fixtureB.isSensor)) {
-      parent.gameViewModel.gameOver();
+      parent.onBallLost();
     }
   }
 }

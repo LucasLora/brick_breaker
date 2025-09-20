@@ -1,1 +1,1 @@
-enum GameState { idle, running, paused, gameOver }
+enum GameState { idle, running, paused, gameOver, levelBeat }

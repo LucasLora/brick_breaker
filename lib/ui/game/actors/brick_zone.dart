@@ -92,6 +92,7 @@ class BrickZone extends PositionComponent with ParentIsA<BrickBreakerWorld> {
           brickSize.y * 0.5 + row * (brickSize.y + spacingY),
         );
     final brick = Brick(position: brickPosition, size: brickSize);
+    parent.registerBrick();
     parent.add(brick);
   }
 }
