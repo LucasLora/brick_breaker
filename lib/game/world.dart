@@ -87,6 +87,7 @@ class BrickBreakerWorld extends Forge2DWorld
   }
 
   void startGame() {
+    FeedbackHelper.vibrate(settingsViewModel);
     for (final ball in children.whereType<Ball>()) {
       ball.launch();
     }
